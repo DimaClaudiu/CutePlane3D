@@ -33,7 +33,7 @@ float random( vec2 p )
 
 void main()
 {
-	// TODO: compute world space vectors
+	// compute world space vectors
 	//v_position += Time*vec3(1);
 	vec3 world_pos = (Model * vec4(v_position, 1)).xyz;
     vec3 world_normal = normalize( mat3(Model) * normalize(v_normal) );
@@ -45,16 +45,16 @@ void main()
 	vec3 V = normalize(eye_position - world_pos);
 	vec3 H = normalize(L + V);
 
-	// TODO: define ambient light component
+	// define ambient light component
 	float ambient_light = 0.55;
 
-	// TODO: compute diffuse light component
+	// compute diffuse light component
 	//float diffuse_light = 0;
 	
 	float diffuse_light = material_kd * max (dot(N, L), 0);
 	vec3 diffuse_light_vec3 = vec3(diffuse_light / 10, diffuse_light / 10 , diffuse_light + sin(Time) * 10);
 
-	// TODO: compute specular light component
+	// compute specular light component
 	float specular_light = 0;
 	vec3 specular_light_vec3;
 
@@ -64,13 +64,13 @@ void main()
 		specular_light_vec3 = vec3(specular_light / 10, specular_light / 10, specular_light  + sin(Time) * 10);
 	}
 
-	// TODO: compute light
+	// compute light
 	float light = ambient_light + specular_light + diffuse_light;
 
 	//vec3 light_vec3 = diffuse_light_vec3 + vec3(1) * (ambient_light + specular_light);
 	vec3 light_vec3 = diffuse_light_vec3 +  specular_light_vec3 + vec3(1) * (ambient_light);
 
-	// TODO: send color light output to fragment shader
+	// send color light output to fragment shader
 	//color = vec3(1);
 	color = object_color * light_vec3;
 

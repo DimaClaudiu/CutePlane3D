@@ -16,13 +16,13 @@ uniform int material_shininess;
 uniform vec3 object_color;
 
 uniform int lighting_type;
-uniform float cut_off; //cut_off position
+uniform float cut_off; // cut_off position
 
 layout(location = 0) out vec4 out_color;
 
 void main()
 {	
-	if(lighting_type == 0) //Normal
+	if(lighting_type == 0) // Normal
 	{
 		//float ambient_light = 0.146534785687;
 		float ambient_light = 0.45;
@@ -52,7 +52,7 @@ void main()
 
 		if(spot_light > cos(cut_off))
 		{
-			//phong
+			// phong
 			float diffuse_light = max(dot(normalize(world_normal), normalize(L)), 0);
 
 			vec3 R = reflect(normalize(-L), normalize(world_normal));

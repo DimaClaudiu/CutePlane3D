@@ -311,11 +311,11 @@ void MyPlane::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & mod
 	glUseProgram(shader->program);
 
 	// Set shader uniforms for light & material properties
-	// TODO: Set light position uniform
+	// Set light position uniform
 	GLint loc_light_position = glGetUniformLocation(shader->program, "light_position");
 	glUniform3fv(loc_light_position, 1, glm::value_ptr(lightPosition));
 
-	// TODO: Set eye position (camera position) uniform
+	// Set eye position (camera position) uniform
 	glm::vec3 eyePosition = GetSceneCamera()->transform->GetWorldPosition();
 
 	//Seems GUD
@@ -323,7 +323,7 @@ void MyPlane::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & mod
 	GLint loc_eye_position = glGetUniformLocation(shader->program, "eye_position");
 	glUniform3fv(loc_eye_position, 1, glm::value_ptr(eyePosition));
 
-	// TODO: Set material property uniforms (shininess, kd, ks, object color) 
+	// Set material property uniforms (shininess, kd, ks, object color) 
 	GLint loc = glGetUniformLocation(shader->program, "material_shininess");
 	glUniform1i(loc, materialShininess);
 
@@ -350,7 +350,7 @@ void MyPlane::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & mod
 	int loc_projection_matrix = glGetUniformLocation(shader->program, "Projection");
 	glUniformMatrix4fv(loc_projection_matrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
-	//EXTRA ULTA BONUS: TIMP
+	// Add time for a pseudo-random effect
 	int locationTime = glGetUniformLocation(shader->program, "Time");
 	glUniform1f(locationTime, mytime);
 	
@@ -395,7 +395,6 @@ void MyPlane::OnKeyPress(int key, int mods)
 
 void MyPlane::OnKeyRelease(int key, int mods)
 {
-	// add key release event
 }
 
 void MyPlane::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY)
@@ -403,17 +402,14 @@ void MyPlane::OnMouseMove(int mouseX, int mouseY, int deltaX, int deltaY)
 	plane.followMouse(mouseX, mouseY, deltaX, deltaY);
 	mousePos.x = (float)mouseX * 16.0f / 1920.0f;
 	mousePos.y = 9.0f - (float)mouseY * 9.0f / 1080.0f;
-	// add mouse move event
 }
 
 void MyPlane::OnMouseBtnPress(int mouseX, int mouseY, int button, int mods)
 {
-	// add mouse button press event
 }
 
 void MyPlane::OnMouseBtnRelease(int mouseX, int mouseY, int button, int mods)
 {
-	// add mouse button release event
 }
 
 void MyPlane::OnMouseScroll(int mouseX, int mouseY, int offsetX, int offsetY)
