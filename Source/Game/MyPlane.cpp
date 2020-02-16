@@ -318,8 +318,6 @@ void MyPlane::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & mod
 	// Set eye position (camera position) uniform
 	glm::vec3 eyePosition = GetSceneCamera()->transform->GetWorldPosition();
 
-	//Seems GUD
-	//cout << eyePosition.x << " " << eyePosition.y << " " << eyePosition.z << endl;
 	GLint loc_eye_position = glGetUniformLocation(shader->program, "eye_position");
 	glUniform3fv(loc_eye_position, 1, glm::value_ptr(eyePosition));
 
@@ -327,10 +325,10 @@ void MyPlane::RenderSimpleMesh(Mesh *mesh, Shader *shader, const glm::mat4 & mod
 	GLint loc = glGetUniformLocation(shader->program, "material_shininess");
 	glUniform1i(loc, materialShininess);
 
-	loc = glGetUniformLocation(shader->program, "material_kd");  // componenta difuza
+	loc = glGetUniformLocation(shader->program, "material_kd");  // Difuse
 	glUniform1f(loc, materialKd);
 
-	loc = glGetUniformLocation(shader->program, "material_ks");  // componenta speculara
+	loc = glGetUniformLocation(shader->program, "material_ks");  // Specular
 	glUniform1f(loc, materialKs);
 
 	loc = glGetUniformLocation(shader->program, "object_color");
